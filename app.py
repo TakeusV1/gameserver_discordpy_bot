@@ -28,7 +28,7 @@ async def loop():
 async def info(ctx):
     server = JavaServer.lookup(str(server_ip+':'+server_port))
     status = server.status()
-    await ctx.channel.send("__**Joueurs**__: {}/{}\n__**Latence**__: {} *ms*".format(status.players.online,status.players.max,server.ping().rou))
+    await ctx.channel.send("__**Joueurs**__: {}/{}\n__**Latence**__: {} *ms*".format(status.players.online,status.players.max,server.ping()))
 
 @bot.command()
 async def cmd(ctx):
