@@ -36,4 +36,4 @@ async def cmd(ctx):
 
 bot.run(token)
 
-## Takeus © 2022
+## Takeus 2022
