@@ -1,8 +1,8 @@
 # mcquery_discordpy_bot
 
 ### Dépendances
-`pip install discord.py`<br>
-`pip install mcstatus`
+`pip3 install discord.py`<br>
+`pip3 install mcstatus`
 
 ### Configuration
 Il faut modifier les lignes suivantes:<br>
