@@ -3,8 +3,8 @@ from discord.ext import tasks, commands
 from mcstatus import JavaServer
 
 ## Config
-token = 'xxxxxxxxxxxxxxxxx' # Token BOT
-server_ip = 'xx.xx.xx.xx' # Addresse IP 
+token = 'xxxxxxxxxxxxxxx' # Token BOT
+server_ip = 'xx.xx.xx.xx' # Addresse IP
 server_port = 'xxxxx' # Port
 bot_prefix = '!!' # Préfixe
 
@@ -40,12 +40,18 @@ async def loop():
 
 @bot.command()
 async def info(ctx):
-    try:
-        server = JavaServer.lookup(str(server_ip+':'+server_port))
-        status = server.status()
-        await ctx.channel.send("__**Joueurs**__: {}/{}\n__**Latence**__: {} *ms*".format(status.players.online,status.players.max,server.ping()))
-    except:
-        await ctx.channel.send("Serveur Hors-Ligne")
+    server = JavaServer.lookup(str(server_ip+':'+server_port))
+    status = server.status()
+    #await ctx.channel.send("__**Joueurs**__: {}/{}\n__**Latence**__: {} *ms*".format(status.players.online,status.players.max,server.ping()))
+    embed=discord.Embed(color=0xff8000)
+    embed.add_field(name='Joueurs', value=status.players.online, inline=True)
+    embed.add_field(name='Slots', value=status.players.max, inline=True)
+    embed.add_field(name='Latence', value=str(status.latency)+' ms', inline=True)
+    embed.add_field(name='Addresse', value=server_ip, inline=True)
+    embed.add_field(name='Port', value=server_port, inline=True)
+    embed.add_field(name='Version', value=status.version.name, inline=True)
+    await ctx.send(embed=embed)
+
 
 @bot.command()
 async def cmd(ctx):
