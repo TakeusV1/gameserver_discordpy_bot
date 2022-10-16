@@ -17,7 +17,9 @@ if ptero_enable:
     discord_admins_id = [] # Identifiant (Discord) des utilisateurs pouvant interagir avec les commandes...
 
 #bot = discord.Client()
-bot = commands.Bot(command_prefix=bot_prefix)
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix=bot_prefix,intents=intents)
 
 @bot.event
 async def on_ready():
