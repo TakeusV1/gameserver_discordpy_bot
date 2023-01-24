@@ -1,4 +1,7 @@
 import discord
+from discord import app_commands
+from discord.ext import commands
+from discord.ext.commands import has_permissions, BotMissingPermissions
 from discord.ext import tasks, commands
 from mcstatus import JavaServer
 
@@ -17,15 +20,19 @@ if ptero_enable:
     discord_admins_id = [] # Identifiant (Discord) des utilisateurs pouvant interagir avec les commandes...
 
 #bot = discord.Client()
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix=bot_prefix,intents=intents)
+bot = commands.Bot(command_prefix=bot_prefix,intents = discord.Intents.all())
 
 @bot.event
 async def on_ready():
     if not loop.is_running():
         loop.start()
     print('Ready')
+    ## commands
+    try:
+        synced = await bot.tree.sync()
+        print(f"Synced {len(synced)} commands")
+    except Exception as e:
+        print(e)
 
 @tasks.loop(seconds=5)
 async def loop():
@@ -40,8 +47,8 @@ async def loop():
     except:
         await bot.change_presence(activity=discord.Game(name="Serveur Hors-Ligne"),status=discord.Status.dnd)
 
-@bot.command()
-async def info(ctx):
+@bot.tree.command(name="serverinfo", description="Affiche les informations du serveur.")
+async def serverinfo(interaction: discord.Interaction):
     try:
         server = JavaServer.lookup(str(server_ip+':'+server_port))
         status = server.status()
@@ -53,20 +60,13 @@ async def info(ctx):
         embed.add_field(name='Addresse', value=server_ip, inline=True)
         embed.add_field(name='Port', value=server_port, inline=True)
         embed.add_field(name='Version', value=status.version.name, inline=True)
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
     except:
-        await ctx.channel.send("Serveur Hors-Ligne")
+        await interaction.response.send_message("Serveur Hors-Ligne")
 
-
-@bot.command()
-async def cmd(ctx):
-    await ctx.channel.send(f"__**Liste des Commandes Utilisateur**__:\n {bot_prefix}info *(Affiche les informations du Serveur.)*\n {bot_prefix}ping *(Permet de savoir si le BOT est en marche.)*")
-    if ptero_enable:
-        await ctx.channel.send(f"__**Liste des Commandes Administrateur**__:\n {bot_prefix}sinfo *(Affiche des informations poussées du Serveur.)*\n {bot_prefix}power *(Permet d'effectuer des actions sur le serveur)*\n {bot_prefix}console *(Permet d'executer des commandes sur le serveur)*")
-
-@bot.command()
-async def ping(ctx):
-    await ctx.channel.send(f'Bot UP !\nLatence: {round(bot.latency, 1)}')
+@bot.tree.command(name="ping", description="latence du bot")
+async def serverinfo(interaction: discord.Interaction):
+    await interaction.response.send_message(f'Bot UP !\nLatence: {round(bot.latency, 1)}')
 
 if ptero_enable:
     from pydactyl import PterodactylClient
@@ -126,4 +126,4 @@ if ptero_enable:
 
 bot.run(token)
 
-## Takeus 2022
+## Takeus 2023
