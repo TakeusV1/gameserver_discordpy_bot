@@ -9,7 +9,7 @@ Il faut modifier les lignes suivantes:<br>
 `token = 'xxxxxxxxxxxxxxx'`<br>
 `server_ip = 'xx.xx.xx.xx'`<br>
 `server_port = 'xxxxx'`<br>
-mcOs = True`<br>
+`mcOs = True`<br>
 ### Mise en PROD
 On peut utiliser par exemple **PM2**:
 ```bash
