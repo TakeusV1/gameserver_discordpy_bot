@@ -2,8 +2,7 @@
 
 ### Dépendances
 `pip3 install discord.py`<br>
-`pip3 install mcstatus `<br>
-`pip3 install sourceserver `<br>
+`pip3 install mcstatus sourceserver`<br>
 ### Configuration
 Il faut modifier les lignes suivantes:<br>
 `token = 'xxxxxxxxxxxxxxx'`<br>
