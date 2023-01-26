@@ -2,15 +2,14 @@
 
 ### Dépendances
 `pip3 install discord.py`<br>
-`pip3 install mcstatus`<br>
-*optionnel*<br>
-`pip3 install py-dactyl`
+`pip3 install mcstatus `<br>
+`pip3 install sourceserver `<br>
 ### Configuration
 Il faut modifier les lignes suivantes:<br>
 `token = 'xxxxxxxxxxxxxxx'`<br>
 `server_ip = 'xx.xx.xx.xx'`<br>
 `server_port = 'xxxxx'`<br>
-
+mcOs = True`<br>
 ### Mise en PROD
 On peut utiliser par exemple **PM2**:
 ```bash
