@@ -3,6 +3,7 @@
 ### Dépendances
 `pip3 install discord.py`<br>
 `pip3 install mcstatus sourceserver`<br>
+
 ### Configuration
 Il faut modifier les lignes suivantes:<br>
 `token = 'xxxxxxxxxxxxxxx'`<br>
@@ -14,7 +15,7 @@ On peut utiliser par exemple **PM2**:
 ```bash
 ### Installation
 apt update
-curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
 apt install nodejs -y
 npm install pm2@latest -g
 ### Utilisation
