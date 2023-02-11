@@ -16,10 +16,10 @@ curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
 apt install nodejs -y
 npm install pm2@latest -g
 ### Usage
-pm2 start app.py --interpreter python3  # Pour démarrer le BOT
-pm2 stop app.py # Pour stopper le BOT
-pm2 monit # Pour voir les instances lancées (leurs logs...)
-pm2 save # Pour lancer les instances à chaque démarrage du système
+pm2 start app.py --interpreter python3  # To start the BOT
+pm2 stop app.py # To stop the BOT
+pm2 monit # To see the launched instances
+pm2 save && pm2 startup # To launch the instances at each system startup
 ```
 ## Example
 ![1](https://user-images.githubusercontent.com/68923554/214927457-e3a14c35-9b73-4987-9c83-2ef74242cf37.png)<br>
