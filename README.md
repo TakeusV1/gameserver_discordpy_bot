@@ -1,14 +1,24 @@
 # gameserver_discordpy_bot
 ### Dependencies
-`pip3 install discord.py`<br>
-`pip3 install mcstatus sourceserver`<br>
-
+- mcstatus
+- sourceserver
 ### Config
 `token = 'xxxxxxxxxxxxxxx'`<br>
 `server_ip = 'xx.xx.xx.xx'`<br>
 `server_port = 'xxxxx'`<br>
 `mcOs = True`<br>
-### Prod
+### Installation
+##### Python
+```bash
+python -m venv discord_bot
+source discord_bot/bin/activate
+pip install discord.py
+pip install mcstatus sourceserver
+deactivate
+```
+##### Production
+You can setup a systemd service or do the following with “pm2” :<br>
+(which lets you manage your instances very easily with access to logs, console...)
 ```bash
 ### Setup
 apt update
